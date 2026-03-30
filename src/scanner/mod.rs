@@ -11,6 +11,7 @@ pub(crate) use validation::{run_secret_validation, AccessMapCollector};
 mod docker;
 mod enumerate;
 mod processing;
+mod qeax_extractor;
 mod repos;
 mod runner;
 mod summary;

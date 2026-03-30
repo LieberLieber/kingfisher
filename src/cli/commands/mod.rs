@@ -7,6 +7,7 @@ pub mod gitlab;
 pub mod huggingface;
 pub mod inputs;
 pub mod output;
+pub mod qeax;
 pub mod revoke;
 pub mod rules;
 pub mod scan;

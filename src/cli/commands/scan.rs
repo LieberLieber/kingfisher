@@ -20,6 +20,7 @@ use crate::{
             huggingface::HuggingFaceRepoSpecifiers,
             inputs::{ContentFilteringArgs, InputSpecifierArgs},
             output::{OutputArgs, ReportOutputFormat},
+            qeax::QeaxScanArgs,
             rules::RuleSpecifierArgs,
             view,
         },
@@ -528,6 +529,10 @@ impl ScanCommandArgs {
                     scan_args.input_specifier_args.docker_image = args.images;
                     None
                 }
+                ScanInputCommand::Qeax(args) => {
+                    scan_args.input_specifier_args.path_inputs = vec![args.path];
+                    None
+                }
             };
 
             if let Some(list_command) = maybe_list {
@@ -657,6 +662,9 @@ pub enum ScanInputCommand {
 
     /// Scan Docker or OCI images
     Docker(DockerScanArgs),
+
+    /// Scan a Sparx Enterprise Architect .qeax file
+    Qeax(QeaxScanArgs),
 }
 
 #[derive(Args, Debug, Clone, Default)]

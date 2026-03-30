@@ -8,6 +8,14 @@ use tracing::debug;
 const MAX_ROWS_PER_TABLE: usize = 100_000;
 const MAX_TOTAL_BYTES: usize = 256 * 1024 * 1024;
 
+/// Check if a file is a Sparx Enterprise Architect .qeax file
+pub fn is_qeax_file(path: &Path) -> bool {
+    path.extension()
+        .and_then(|ext| ext.to_str())
+        .map(|ext| ext.eq_ignore_ascii_case("qeax"))
+        .unwrap_or(false)
+}
+
 /// Extract all user tables from a SQLite database as SQL text.
 ///
 /// Returns a vec of `(logical_name, sql_text)` pairs, one per table.
